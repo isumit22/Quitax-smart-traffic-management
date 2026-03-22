@@ -6,6 +6,14 @@ from threading import Lock
 
 app = Flask(__name__)
 
+
+@app.after_request
+def add_cors_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+    response.headers["Access-Control-Allow-Methods"] = "GET, OPTIONS"
+    return response
+
 last_update = 0
 cached_data = {
     "lanes": {"A": 0, "B": 0, "C": 0, "D": 0},

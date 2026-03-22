@@ -13,7 +13,10 @@ function setSignal(lane) {
     resetLights();
 
     let laneDiv = document.getElementById(lane);
+    if (!laneDiv) return;
+
     let lights = laneDiv.querySelectorAll(".light");
+    if (lights.length < 3) return;
 
     // Step 1: Yellow
     lights[1].classList.add("active");
@@ -31,8 +34,16 @@ async function fetchTraffic(emergency=false) {
     let url = "http://127.0.0.1:5000/traffic";
     if (emergency) url += "?ambulance=true";
 
-    const res = await fetch(url);
-    const data = await res.json();
+    let data;
+    try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("API returned " + res.status);
+        data = await res.json();
+    } catch (err) {
+        document.getElementById("decision").innerText =
+            "Backend not reachable. Start Flask on http://127.0.0.1:5000";
+        return;
+    }
 
     // 🚗 Update vehicle count
     for (let lane in data.lanes) {
@@ -50,8 +61,7 @@ async function fetchTraffic(emergency=false) {
     }
 
     // ⏱ Update timer
-    document.getElementById("timer").innerText =
-        "⏱ Timer: " + timer + "s";
+    document.getElementById("timer").innerText = timer;
 
     if (timer > 0) timer--;
 
@@ -73,6 +83,9 @@ async function fetchTraffic(emergency=false) {
 function simulateEmergency() {
     fetchTraffic(true);
 }
+
+/* 🚀 Initial fetch */
+fetchTraffic();
 
 /* 🔁 Auto refresh every second */
 setInterval(fetchTraffic, 1000);
