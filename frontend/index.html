@@ -6,17 +6,43 @@
 </head>
 <body>
 
-<h1>🚦 Smart Traffic Control</h1>
+<h1>🚦 AI Smart Traffic Control System</h1>
 
-<div class="container">
-    <div class="lane" id="A">Lane A</div>
-    <div class="lane" id="B">Lane B</div>
-    <div class="lane" id="C">Lane C</div>
-    <div class="lane" id="D">Lane D</div>
+<!-- 🚦 Junction Layout -->
+<div class="junction">
+
+    <div class="lane" id="A">
+        <span class="label">Lane A</span>
+        <span class="count" id="countA">0</span>
+    </div>
+
+    <div class="lane" id="B">
+        <span class="label">Lane B</span>
+        <span class="count" id="countB">0</span>
+    </div>
+
+    <div class="lane" id="C">
+        <span class="label">Lane C</span>
+        <span class="count" id="countC">0</span>
+    </div>
+
+    <div class="lane" id="D">
+        <span class="label">Lane D</span>
+        <span class="count" id="countD">0</span>
+    </div>
+
 </div>
 
-<button onclick="simulateEmergency()">🚑 Emergency</button>
+<!-- ⏱ Timer -->
+<h2>⏱ Signal Timer: <span id="timer">0</span>s</h2>
+
+<!-- 📊 Decision -->
+<p id="decision">Waiting for data...</p>
+
+<!-- 🚑 Emergency Button -->
+<button onclick="simulateEmergency()">🚑 Emergency Override</button>
 
 <script src="script.js"></script>
+
 </body>
 </html>

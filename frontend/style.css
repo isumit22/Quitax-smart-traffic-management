@@ -1,20 +1,48 @@
 body {
     text-align: center;
     font-family: Arial;
+    background: #111;
+    color: white;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: repeat(2, 150px);
-    gap: 20px;
-    justify-content: center;
+.junction {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    margin: auto;
+    background: #333;
+    border-radius: 10px;
 }
 
 .lane {
-    height: 100px;
-    background: red;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    width: 100px;
+    height: 120px;
+    background: #222;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+/* Position lanes */
+#A { top: 0; left: 125px; }
+#B { right: 0; top: 125px; }
+#C { bottom: 0; left: 125px; }
+#D { left: 0; top: 125px; }
+
+.light {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #444;
+    margin: 5px auto;
+}
+
+.red.active { background: red; }
+.yellow.active { background: yellow; }
+.green.active { background: green; }
+
+.count {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
 }
