@@ -1,3 +1,4 @@
-ultralytics
-opencv-python
-flask
+torch>=2.2.0
+ultralytics>=8.0.133
+opencv-python>=4.7.0
+flask>=2.2.5
